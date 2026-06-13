@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Musicality{% endblock %}
+{% block title %}musstats{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -13,14 +14,16 @@
             
             {% if now %}
                 <div class="track-info">
-                    <p><strong>исполнитель:</strong> {{ now[0] }}</p>
-                    <p><strong>трек:</strong> {{ now[1] }}</p>
-                    <p><strong>альбом:</strong> {{ now[2] }}</p>
-                    {% if now[3] %}
-                    <img src="{{ now[3] }}" alt="Album art" class="album-art">
-                    {% endif %}
+                    <a href="{{ artists[4] }}">
+                        <p><strong>исполнитель:</strong> {{ now[0] }}</p>
+                        <p><strong>трек:</strong> {{ now[1] }}</p>
+                        <p><strong>альбом:</strong> {{ now[2] }}</p>
+                        {% if now[3] %}
+                        <img src="{{ now[3] }}" alt="Album art" class="album-art">
+                        {% endif %}
+                    </a>
                     
-                    <p><strong>Всего прослушиваний:</strong> {{ now[4] }}</p>
+                    <p><strong>Всего прослушиваний:</strong> {{ now[5] }}</p>
                 </div>
             {% else %}
                 <p>Сейчас этот хуесос ничего не слушает ()_O</p>
@@ -29,18 +32,20 @@
         <div class="upper-block_right">
             <div class="top-artists">
                 <h2>топ артистов по слушкам:</h2>
-    
+
                 <div class="artists">
                     {% for i in range(5) %}
-                        <div class="artist">
-                            <p>{{ artists[i][0] }}</p>
-                            <p><strong>{{ artists[i][1] }} раз</strong></p>
-                        </div>
+                        <a href="{{artists[i][2]}}">
+                            <div class="artist">
+                                <p>{{ artists[i][0] }}</p>
+                                <p><strong>{{ artists[i][1] }} раз</strong></p>
+                            </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
             <div class="kitten-container">
-                <img src="{{ url_for('static', filename='img/kitten.png') }}" alt="kitten" class="kitten-img">
+                <img src="{{ url_for('static', filename='img/kitten.gif') }}" alt="kitten" class="kitten-img">
            </div>
         </div>
     </div>
@@ -50,13 +55,15 @@
         <div class="albums">
             {% for i in range(5) %}
                 <div class="album">
-                    <div class="album-info">
-                        {% if albums[i][2] %}
-                        <img src="{{ albums[i][2] }}" alt="Album art" class="album-art">
-                        {% endif %}
-                        <p>{{ albums[i][0] }}</p>
-                        <p><strong>{{ albums[i][1] }}</strong></p>
-                    </div>
+                    <a href="{{albums[i][4]}}">
+                        <div class="album-info">
+                            {% if albums[i][2] %}
+                            <img src="{{ albums[i][2] }}" alt="Album art" class="album-art">
+                            {% endif %}
+                            <p>{{ albums[i][0] }}</p>
+                            <p><strong>{{ albums[i][1] }}</strong></p>
+                        </div>
+                    </a>
                     <p align="right"><small>{{ albums[i][3] }} слушек</small></p>
                 </div>
             {% endfor %}

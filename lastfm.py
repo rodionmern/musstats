@@ -13,9 +13,12 @@ def getNowPlaying():
     trackName = data['recenttracks']['track'][0]['name']
     album = data['recenttracks']['track'][0]['album']['#text']
     artURL = data['recenttracks']['track'][0]['image'][3]['#text']
+    url = data['recenttracks']['track'][0]['url']
     allScrobbles = data['recenttracks']['@attr']['totalPages']
 
-    return [artist, trackName, album, artURL, allScrobbles]
+    print(data)
+
+    return [artist, trackName, album, artURL, url, allScrobbles]
 
 def getTopAlbums():
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=5"
@@ -30,8 +33,9 @@ def getTopAlbums():
         artist = data['topalbums']['album'][i]['artist']['name']
         artURL = data['topalbums']['album'][i]['image'][2]['#text']
         playCount = data['topalbums']['album'][i]['playcount']
+        url = data['topalbums']['album'][i]['url']
         # artURL = data['topalbums']['album'][i]['#text']
-        topAlbums.append([albumName, artist, artURL, playCount])
+        topAlbums.append([albumName, artist, artURL, playCount, url])
     
     return topAlbums
 
@@ -46,7 +50,10 @@ def getTopArtists():
     for i in range(5):
         artistName = data['topartists']['artist'][i]['name']
         playCount = data['topartists']['artist'][i]['playcount']
+        url = data['topartists']['artist'][i]['url']
         # artURL = data['topalbums']['album'][i]['#text']
-        topArtists.append([artistName, playCount])
+        topArtists.append([artistName, playCount, url])
 
     return topArtists
+
+getNowPlaying()

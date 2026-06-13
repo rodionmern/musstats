@@ -32,21 +32,22 @@
     height: auto;
     min-width: max-content;
     display: flex;
-    align-items: end;
+    align-items: center;
     flex-direction: column;
     border: 2px black solid;
     padding: 0px 10px;
-    margin: 0 5px 5px 0;
+    margin: 0 0 5px 0;
     font-size: large;
 }
 
 .artists {
     display: flex;
+    text-align: center;
     justify-content: space-between;
 }
 
 .artist {
-    margin: 0 10px;
+    margin: 0 20px;
 }
 
 .kitten-container {
@@ -59,12 +60,13 @@
 .kitten-img {
     height: 250px;
     width: 200px;
-    transition: all 0.3s;
+    transition: all 3s;
+    margin-bottom: 5px;
 }
 
 .kitten-img:hover {
-    height: 250px;
-    width: max-content;
+    height: 100vh;
+    width: 100%;
     transition: all 0.3s;
 }
 
@@ -92,7 +94,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(#ffffff, #fef57b);
+    background: linear-gradient(#3e1192, #ffffff);
 
     padding: 0px 10px;
     margin: 0px 5px;
