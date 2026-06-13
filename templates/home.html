@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Musicality{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="upper-block">
+        <div class="now-playing">
+            <h2>сейчас слушает:</h2>
+            
+            {% if now %}
+                <div class="track-info">
+                    <p><strong>исполнитель:</strong> {{ now[0] }}</p>
+                    <p><strong>трек:</strong> {{ now[1] }}</p>
+                    <p><strong>альбом:</strong> {{ now[2] }}</p>
+                    {% if now[3] %}
+                    <img src="{{ now[3] }}" alt="Album art" class="album-art">
+                    {% endif %}
+                    
+                    <p><strong>Всего прослушиваний:</strong> {{ now[4] }}</p>
+                </div>
+            {% else %}
+                <p>Сейчас этот хуесос ничего не слушает ()_O</p>
+            {% endif %}
+        </div>
+        <div class="upper-block_right">
+            <div class="top-artists">
+                <h2>топ артистов по слушкам:</h2>
+    
+                <div class="artists">
+                    {% for i in range(5) %}
+                        <div class="artist">
+                            <p>{{ artists[i][0] }}</p>
+                            <p><strong>{{ artists[i][1] }} раз</strong></p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="kitten-container">
+                <img src="{{ url_for('static', filename='img/kitten.png') }}" alt="kitten" class="kitten-img">
+           </div>
+        </div>
+    </div>
+    <div class="top-albums">
+        <h2>топ альбомов по слушкам:</h2>
+    
+        <div class="albums">
+            {% for i in range(5) %}
+                <div class="album">
+                    <div class="album-info">
+                        {% if albums[i][2] %}
+                        <img src="{{ albums[i][2] }}" alt="Album art" class="album-art">
+                        {% endif %}
+                        <p>{{ albums[i][0] }}</p>
+                        <p><strong>{{ albums[i][1] }}</strong></p>
+                    </div>
+                    <p align="right"><small>{{ albums[i][3] }} слушек</small></p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

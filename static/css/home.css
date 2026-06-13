@@ -1,0 +1,104 @@
+.content {
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upper-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.now-playing {
+    height: auto;
+    width: max-content;
+    text-align: center;
+    border: 2px black solid;
+    padding: 0px 10px;
+    margin: 0 5px 5px 0;
+}
+
+.upper-block_right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.top-artists {
+    height: auto;
+    min-width: max-content;
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+    border: 2px black solid;
+    padding: 0px 10px;
+    margin: 0 5px 5px 0;
+    font-size: large;
+}
+
+.artists {
+    display: flex;
+    justify-content: space-between;
+}
+
+.artist {
+    margin: 0 10px;
+}
+
+.kitten-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.kitten-img {
+    height: 250px;
+    width: 200px;
+    transition: all 0.3s;
+}
+
+.kitten-img:hover {
+    height: 250px;
+    width: max-content;
+    transition: all 0.3s;
+}
+
+.top-albums {
+    height: auto;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    border: 2px black solid;
+    padding: 0px 10px;
+}
+
+.albums {
+    height: auto;
+    width: max-content;
+    display: flex;
+}
+
+.album {
+    height: 331px;
+    width: min-content;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(#ffffff, #fef57b);
+
+    padding: 0px 10px;
+    margin: 0px 5px;
+}
+
+.album-art {
+    height: 174px;
+    width: 174px;
+}
