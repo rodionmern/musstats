@@ -13,12 +13,10 @@ def getNowPlaying():
     trackName = data['recenttracks']['track'][0]['name']
     album = data['recenttracks']['track'][0]['album']['#text']
     artURL = data['recenttracks']['track'][0]['image'][3]['#text']
-    url = data['recenttracks']['track'][0]['url']
+    trackURL = data['recenttracks']['track'][0]['url']
     allScrobbles = data['recenttracks']['@attr']['totalPages']
 
-    print(data)
-
-    return [artist, trackName, album, artURL, url, allScrobbles]
+    return [artist, trackName, album, artURL, trackURL, allScrobbles]
 
 def getTopAlbums():
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=5"

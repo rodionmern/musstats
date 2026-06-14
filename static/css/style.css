@@ -12,4 +12,10 @@ a {
 
 a:hover {
     cursor: pointer;
+    text-decoration: underline;
+}
+
+hr {
+    width: 25%;
+    border: 2px black dotted;
 }
