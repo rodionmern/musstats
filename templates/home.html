@@ -5,47 +5,46 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 <script src="{{ url_for('static', filename='js/kitten.js') }}"></script>
 <script src="{{ url_for('static', filename='js/fetchTrack.js') }}"></script>
+<script src="{{ url_for('static', filename='js/stats.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="content">
+    <p class="status"></p>
     <div class="upper-block">
+        <div class="kitten-container">
+            <img src="{{ url_for('static', filename='img/kitten.gif') }}" alt="kitten" class="kitten-img">
+        </div>
         <div class="now-playing">
             <h2>сейчас слушает:</h2>
             
             {% if now %}
                 <div class="track-info">
                     <p><strong>исполнитель:</strong> <span id="artist">{{ now[0] }}</span></p>
-                    <p><strong>трек:</strong> <a href="{{ now[4] }}" id="track-name">{{ now[1] }}</a></p>
+                    <p><strong>трек:</strong> <a href="{{ now[4] }}"><span id="track-name">{{ now[1] }}</span></a></p>
                     <p><strong>альбом:</strong> <span id="album-name">{{ now[2] }}</span></p>
                     {% if now[3] %}
-                    <img src="{{ now[3] }}" alt="Album art" class="album-art" id="album-art">
+                        <img src="{{ now[3] }}" alt="Album art" class="album-art" id="album-art">
                     {% endif %}
                     
-                    <p id="all-scrobbles"><strong>Всего прослушиваний:</strong> {{ now[5] }}</p>
+                    <p><span id="all-scrobbles">{{ now[5] }}</span></p>
                 </div>
             {% else %}
                 <p>Сейчас этот хуесос ничего не слушает ()_O</p>
             {% endif %}
         </div>
-        <hr>
-        <div class="upper-block_right">
-            <div class="kitten-container">
-                <img src="{{ url_for('static', filename='img/kitten.gif') }}" alt="kitten" class="kitten-img">
-            </div>
-            <hr>
-            <div class="top-artists">
-                <h2>топ артистов по слушкам:</h2>
+    </div>
+    <hr>
+    <div class="top-artists">
+        <h2>топ артистов по слушкам:</h2>
 
-                <div class="artists">
-                    {% for i in range(5) %}
-                        <div class="artist">
-                            <p><a href="{{artists[i][2]}}">{{ artists[i][0] }}</a></p>
-                            <p><strong>{{ artists[i][1] }} раз</strong></p>
-                        </div>
-                    {% endfor %}
+        <div class="artists">
+            {% for i in range(5) %}
+                <div class="artist">
+                    <p><a href="{{artists[i][2]}}">{{ artists[i][0] }}</a></p>
+                    <p><strong>{{ artists[i][1] }} раз</strong></p>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="top-albums">

@@ -22,6 +22,15 @@ def api_current_track():
         'scrobbles': data[5]
     })
 
+@app.route('/api/tops')
+def api_tops():
+    albums_data = getTopAlbums()
+    artists_data = getTopArtists()
+    return jsonify({
+        'albums': albums_data,
+        'artists': artists_data
+    })
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1717, debug=True)
 

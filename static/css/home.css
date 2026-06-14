@@ -3,14 +3,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 .upper-block {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .now-playing {
@@ -20,12 +18,6 @@
     border: 2px black solid;
     padding: 0px 10px;
     margin: 0 5px 5px 0;
-}
-
-.upper-block_right {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
 }
 
 .top-artists {
@@ -59,14 +51,13 @@
 
 .kitten-img {
     height: 250px;
-    width: 200px;
+    width: auto;
     transition: all 3s;
     margin-bottom: 5px;
 }
 
 .kitten-img:hover {
-    height: 500px;
-    width: 90vw;
+    transform: translate(50%, 50%) rotate(-10deg) scale(2.5); 
     transition: all 0.3s;
 }
 
@@ -96,7 +87,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(#3e1192, #ffffff);
+    background: linear-gradient(148deg,rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%);
 
     padding: 0px 10px;
     margin: 0px 5px;
@@ -105,11 +96,17 @@
 .album-art {
     height: 174px;
     width: 174px;
+    transition: all 0.3s;
+}
+
+.album-art:hover {
+    transform: translate(30px, 20px) rotate(10deg);
+    transition: all 0.3s;
 }
 
 @media screen and (max-width: 1100px) {
-    .upper-block_right {
-        align-items: center;
+    .upper-block {
+        flex-direction: column;
     }
     .top-artists {
         width: min-content;

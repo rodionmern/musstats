@@ -33,4 +33,4 @@ async function fetchTrack() {
 }
 
 fetchTrack();
-setInterval(fetchTrack, 1500);
+setInterval(fetchTrack, 2000);
