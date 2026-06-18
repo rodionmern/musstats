@@ -1,18 +1,27 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, request, jsonify
 from lastfm import getNowPlaying, getTopAlbums, getTopArtists
 
 app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def index():
-    nowPlaying = getNowPlaying()
-    topAlbums = getTopAlbums()
-    topArtists = getTopArtists()
+    username = request.cookies.get('username')
+    if username is None:
+        username = 'rodionsaburov'
+    print(username)
+
+    nowPlaying = getNowPlaying(username)
+    topAlbums = getTopAlbums(username)
+    topArtists = getTopArtists(username)
     return render_template('home.html', now=nowPlaying, albums=topAlbums, artists=topArtists)
 
 @app.route('/api/current-track')
 def api_current_track():
-    data = getNowPlaying()
+    username = request.cookies.get('username')
+    if username is None:
+        username = 'rodionsaburov'
+    
+    data = getNowPlaying(username)
     return jsonify({
         'artist': data[0],
         'track': data[1],
@@ -24,8 +33,12 @@ def api_current_track():
 
 @app.route('/api/tops')
 def api_tops():
-    albums_data = getTopAlbums()
-    artists_data = getTopArtists()
+    username = request.cookies.get('username')
+    if username is None:
+        username = 'rodionsaburov'
+    
+    albums_data = getTopAlbums(username)
+    artists_data = getTopArtists(username)
     return jsonify({
         'albums': albums_data,
         'artists': artists_data

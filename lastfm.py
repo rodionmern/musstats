@@ -1,9 +1,9 @@
 import requests
 
 apikey = "1357be3f7e4f50ecf63850d870f3d36d"
-username = "rodionsaburov"
+# username = "rodionsaburov"
 
-def getNowPlaying():
+def getNowPlaying(username):
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=1"
 
     response = requests.get(url)
@@ -18,7 +18,7 @@ def getNowPlaying():
 
     return [artist, trackName, album, artURL, trackURL, allScrobbles]
 
-def getTopAlbums():
+def getTopAlbums(username):
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=5"
 
     response = requests.get(url)
@@ -37,7 +37,7 @@ def getTopAlbums():
     
     return topAlbums
 
-def getTopArtists():
+def getTopArtists(username):
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=5"
 
     response = requests.get(url)
@@ -53,5 +53,3 @@ def getTopArtists():
         topArtists.append([artistName, playCount, url])
 
     return topArtists
-
-getNowPlaying()

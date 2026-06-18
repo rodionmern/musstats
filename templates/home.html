@@ -3,9 +3,6 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-<script src="{{ url_for('static', filename='js/kitten.js') }}"></script>
-<script src="{{ url_for('static', filename='js/fetchTrack.js') }}"></script>
-<script src="{{ url_for('static', filename='js/stats.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -14,9 +11,11 @@
     <div class="upper-block">
         <div class="kitten-container">
             <img src="{{ url_for('static', filename='img/kitten.gif') }}" alt="kitten" class="kitten-img">
+            <input type="text" placeholder="Введите username на last.fm" id="username-input">
         </div>
+        <p id="stats-person-name"></p>
         <div class="now-playing">
-            <h2>сейчас слушает:</h2>
+            <h2>последний скробл:</h2>
             
             {% if now %}
                 <div class="track-info">
@@ -67,4 +66,16 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/kitten.js') }}"></script>
+<script src="{{ url_for('static', filename='js/fetchTrack.js') }}"></script>
+<script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+<script src="{{ url_for('static', filename='js/setUsername.js') }}"></script>
+<script>
+    let match = document.cookie.match(/username=([^;]*)/);
+    let username = match ? match[1] : null;
+    document.querySelector('#stats-person-name').innerHTML = `Статистика пользователя ${username}`;
+</script>
 {% endblock %}
