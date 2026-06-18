@@ -14,7 +14,7 @@ async function updateStats() {
             for (let i = 0; i < 5; i++) {
                 artists.innerHTML += `
                 <div class="artist">
-                    <p><a href="${ data['artists'][i][2]}">${ data['artists'][i][0] }</a></p>
+                    <p><a href="${ data['artists'][i][2]}"><span>${ data['artists'][i][0] }</span></a></p>
                     <p><strong>${ data['artists'][i][1] } раз</strong></p>
                 </div>
                 `
@@ -25,8 +25,8 @@ async function updateStats() {
                     <div class="album">
                         <div class="album-info">
                             <img src="${ data['albums'][i][2] }" alt="Album art" class="album-art">
-                            <p><a href="${ data['albums'][i][4]} ">${ data['albums'][i][0] }</a></p>
-                            <p><strong>${ data['albums'][i][1] }</strong></p>
+                            <p><a href="${ data['albums'][i][4]} "><span>${ data['albums'][i][0] }</span></a></p>
+                            <p><strong><span>${ data['albums'][i][1] }</span></strong></p>
                         </div>
                         
                         <p align="right"><small>${ data['albums'][i][3] } слушек</small></p>

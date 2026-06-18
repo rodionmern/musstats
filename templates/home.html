@@ -41,7 +41,7 @@
         <div class="artists">
             {% for i in range(5) %}
                 <div class="artist">
-                    <p><a href="{{artists[i][2]}}">{{ artists[i][0] }}</a></p>
+                    <p><a href="{{artists[i][2]}}"><span>{{ artists[i][0] }}</span></a></p>
                     <p><strong>{{ artists[i][1] }} раз</strong></p>
                 </div>
             {% endfor %}
@@ -57,8 +57,8 @@
                         {% if albums[i][2] %}
                         <img src="{{ albums[i][2] }}" alt="Album art" class="album-art">
                         {% endif %}
-                        <p><a href="{{albums[i][4]}}">{{ albums[i][0] }}</a></p>
-                        <p><strong>{{ albums[i][1] }}</strong></p>
+                        <p><a href="{{albums[i][4]}}"><span>{{ albums[i][0] }}</span></a></p>
+                        <p><strong><span>{{ albums[i][1] }}</span></strong></p>
                     </div>
                     
                     <p align="right"><small>{{ albums[i][3] }} слушек</small></p>
