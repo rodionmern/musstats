@@ -73,9 +73,8 @@
 <script src="{{ url_for('static', filename='js/fetchTrack.js') }}"></script>
 <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
 <script src="{{ url_for('static', filename='js/setUsername.js') }}"></script>
+<script src="{{ url_for('static', filename='js/getUsername.js') }}"></script>
 <script>
-    let match = document.cookie.match(/username=([^;]*)/);
-    let username = match ? match[1] : null;
-    document.querySelector('#stats-person-name').innerHTML = `Статистика пользователя ${username}`;
+    getUsername()
 </script>
 {% endblock %}

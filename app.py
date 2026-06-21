@@ -3,12 +3,16 @@ from lastfm import getNowPlaying, getTopAlbums, getTopArtists
 
 app = Flask(__name__, template_folder='templates')
 
+@app.errorhandler(Exception)
+def handle_exception(e):
+    app.logger.error(f"Unhandled exception: {e}")
+    return render_template('error.html')
+
 @app.route('/')
 def index():
     username = request.cookies.get('username')
     if username is None:
         username = 'rodionsaburov'
-    print(username)
 
     nowPlaying = getNowPlaying(username)
     topAlbums = getTopAlbums(username)

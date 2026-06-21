@@ -3,7 +3,12 @@ let currentTrackName = '';
 async function fetchTrack() {
     try {
         const response = await fetch('/api/current-track');
-        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        console.log(response)
 
         if (data.track !== currentTrackName) {
             currentTrackName = data.track;
@@ -12,8 +17,6 @@ async function fetchTrack() {
             const trackNameEl = document.getElementById('track-name');
             const albumNameEl = document.getElementById('album-name');
             const artEl = document.getElementById('album-art');
-            
-            console.log(data.art_url)
 
             if (artistNameEl) artistNameEl.innerText = data.artist;;
             if (trackNameEl) trackNameEl.innerText = data.track;
@@ -29,6 +32,20 @@ async function fetchTrack() {
         }
     } catch (error) {
         console.error('Ошибка загрузки трека:', error);
+
+        const status = document.querySelector('.status');
+        let username = getUsername()
+        
+        if (username !== "rodionsaburov") {
+            status.innerHTML = "Пользователь не найден или его настройки приватности не позволяют отобразить статистику."
+            
+            setTimeout(() => {status.innerHTML = "Устанавливаем пользователя по умолчанию..."}, 2500)
+            document.cookie = `username=rodionsaburov; path=/; max-age=31536000`;
+            updateStats()
+
+            setTimeout(() => {status.innerHTML = ""}, 5000)
+            document.querySelector('#stats-person-name').innerHTML = `Статистика пользователя rodionsaburov`;
+        }
     }
 }
 

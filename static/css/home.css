@@ -110,13 +110,15 @@
 }
 
 @media screen and (max-width: 1100px) {
+    * {
+        font-size: large;
+    }
     .upper-block {
         flex-direction: column;
-    }
-    .top-artists {
-        width: min-content;
+        align-items: center;
     }
     .artists {
+        width: max-content;
         flex-direction: column;
     }
     .top-albums {
@@ -124,11 +126,37 @@
         width: fit-content;
     }
     .albums {
-        width: 50%;
+        width: 75%;
+        align-items: center;
         flex-wrap: wrap;
         gap: 10px;
     }
     .album {
         margin: 10px 0 10px 0;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    * {
+        font-size: medium;
+    }
+    .upper-block {
+        flex-direction: column;
+        align-items: center;
+    }
+    .artists {
+        width: max-content;
+        flex-direction: column;
+    }
+    .top-albums {
+        width: 100%;
+        align-items: center;
+        width: fit-content;
+    }
+    .albums {
+        width: 85%;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 }

@@ -1,6 +1,11 @@
 async function updateStats() {
     try {
         const response = await fetch('/api/tops');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
         const data = await response.json();
 
         if (data['artists'] && data['albums']) {

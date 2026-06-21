@@ -7,6 +7,7 @@ def getNowPlaying(username):
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=1"
 
     response = requests.get(url)
+    response.raise_for_status()
     data = response.json()
 
     artist = data['recenttracks']['track'][0]['artist']['#text']
@@ -22,6 +23,7 @@ def getTopAlbums(username):
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=5"
 
     response = requests.get(url)
+    response.raise_for_status()
     data = response.json()
 
     topAlbums = []
@@ -41,6 +43,7 @@ def getTopArtists(username):
     url = f"https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={username}&api_key={apikey}&format=json&nowplaying=true&limit=5"
 
     response = requests.get(url)
+    response.raise_for_status()
     data = response.json()
 
     topArtists = []
