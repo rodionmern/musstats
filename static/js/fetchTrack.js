@@ -8,7 +8,7 @@ async function fetchTrack() {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
 
-        console.log(response)
+        const data = await response.json();
 
         if (data.track !== currentTrackName) {
             currentTrackName = data.track;
