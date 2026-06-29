@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from lastfm import getNowPlaying, getTopAlbums, getTopArtists
+from lastfm import getNowPlaying, getTopTrack, getTopAlbums, getTopArtists
 
 app = Flask(__name__, template_folder='templates')
 
@@ -33,6 +33,22 @@ def api_current_track():
         'art_url': data[3],
         'track_url': data[4],
         'scrobbles': data[5]
+    })
+
+@app.route('/api/top-track')
+def api_top_track():
+    username = request.cookies.get('username')
+    if username is None:
+        username = 'rodionsaburov'
+    
+    data = getTopTrack(username)
+    return jsonify({
+        'artist': data[0],
+        'track': data[1],
+        'artURL': data[2],
+        'artistURL': data[3],
+        'trackURL': data[4],
+        'trackScrobbles': data[5]
     })
 
 @app.route('/api/tops')

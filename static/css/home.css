@@ -20,6 +20,37 @@
     margin: 0 5px 5px 0;
 }
 
+.upper-center-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.top-track {
+    width: min-content;
+    display: flex;
+    justify-content: center;
+    border: 2px black solid;
+    padding: 10px;
+    margin: 5px 5px 0 5px;
+}
+
+#top-track-art {
+    width: 105px;
+    height: 105px;
+    margin-right: 10px;
+}
+
+.top-track-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#top-track-p {
+    margin: 5px 0;
+}
+
 .top-artists {
     height: auto;
     min-width: max-content;

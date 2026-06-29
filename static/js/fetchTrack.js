@@ -1,4 +1,5 @@
 let currentTrackName = '';
+let topTrackName = '';
 
 async function fetchTrack() {
     try {
@@ -15,6 +16,7 @@ async function fetchTrack() {
             
             const artistNameEl = document.getElementById('artist');
             const trackNameEl = document.getElementById('track-name');
+            const trackLinkEl = document.getElementById('now-track-link');
             const albumNameEl = document.getElementById('album-name');
             const artEl = document.getElementById('album-art');
 
@@ -24,7 +26,7 @@ async function fetchTrack() {
             setTimeout(() => {
                     artEl.src = data.art_url;
                 }, 50);
-            trackNameEl.href = data.track_url;
+            trackLinkEl.href = data.track_url;
 
             document.getElementById('all-scrobbles').innerText = data.scrobbles;
             
@@ -49,5 +51,55 @@ async function fetchTrack() {
     }
 }
 
+async function fetchTopTrack() {
+    try {
+        const response = await fetch('/api/top-track');
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        if (data.track !== topTrackName) {
+            topTrackName = data.track;
+            
+            const artistNameEl = document.getElementById('top-track-artist-name');
+            const artistLinkEl = document.getElementById('top-track-artist-link');
+            const trackNameEl = document.getElementById('top-track-name');
+            const trackLinkEl = document.getElementById('top-track-link');
+            const artEl = document.getElementById('top-track-art');
+            const trackScrobbles = document.getElementById('top-track-scrobbles');
+
+            if (artistNameEl) artistNameEl.innerText = data.artist;;
+            if (trackNameEl) trackNameEl.innerText = data.track;
+            setTimeout(() => {
+                    artEl.src = data.artURL;
+                }, 50);
+            artistLinkEl.href = data.artistURL;
+            trackLinkEl.href = data.trackURL;
+            trackScrobbles.innerHTML = data.trackScrobbles;
+        }
+    } catch (error) {
+        console.error('Ошибка загрузки трека:', error);
+
+        const status = document.querySelector('.status');
+        let username = getUsername()
+        
+        if (username !== "rodionsaburov") {
+            status.innerHTML = "Пользователь не найден или его настройки приватности не позволяют отобразить статистику."
+            
+            setTimeout(() => {status.innerHTML = "Устанавливаем пользователя по умолчанию..."}, 2500)
+            document.cookie = `username=rodionsaburov; path=/; max-age=31536000`;
+            updateStats()
+
+            setTimeout(() => {status.innerHTML = ""}, 5000)
+            document.querySelector('#stats-person-name').innerHTML = `Статистика пользователя rodionsaburov`;
+        }
+    }
+}
+
 fetchTrack();
+fetchTopTrack();
 setInterval(fetchTrack, 2000);
+setInterval(fetchTopTrack, 10000);

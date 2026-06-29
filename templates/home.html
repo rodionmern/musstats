@@ -13,14 +13,25 @@
             <img src="{{ url_for('static', filename='img/kitten.gif') }}" alt="kitten" class="kitten-img">
             <input type="text" placeholder="Введите username на last.fm" id="username-input">
         </div>
-        <p id="stats-person-name"></p>
+        <div class="upper-center-block">
+            <p id="stats-person-name"></p>
+            <div class="top-track">
+                <img src="" alt="" class="album-art" id="top-track-art">
+                <div class="top-track-details">
+                    <strong>топ-трек:</strong>
+                    <p id="top-track-p"><a href="" id="top-track-artist-link"><span id="top-track-artist-name">исполнитель</span></a></p>
+                    <p id="top-track-p"><a href="" id="top-track-link"><span id="top-track-name">трек</span></a></p>
+                    <b id="top-track-p" align="right"><span id="top-track-scrobbles"></span></b>
+                </div>
+            </div>
+        </div>
         <div class="now-playing">
             <h2>последний скробл:</h2>
             
             {% if now %}
                 <div class="track-info">
                     <p><strong>исполнитель:</strong> <span id="artist">{{ now[0] }}</span></p>
-                    <p><strong>трек:</strong> <a href="{{ now[4] }}"><span id="track-name">{{ now[1] }}</span></a></p>
+                    <p><strong>трек:</strong> <a href="{{ now[4] }}" id="now-track-link"><span id="track-name">{{ now[1] }}</span></a></p>
                     <p><strong>альбом:</strong> <span id="album-name">{{ now[2] }}</span></p>
                     {% if now[3] %}
                         <img src="{{ now[3] }}" alt="Album art" class="album-art" id="album-art">
